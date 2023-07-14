@@ -1,0 +1,68 @@
+:root {
+  --yellow: rgb(243, 255, 7);
+  --purple: rgb(88, 1, 176);
+  --purpleLight: rgb(142, 92, 193);
+}
+
+body {
+  background: var(--purple);
+  color: white;
+}
+
+.container {
+  display: grid;
+  grid-template-rows: 120px 30px 30px 30px 30px 30px 30px auto 30px 10px 30px;
+  justify-items: center;
+}
+
+.newTodoTitle{
+  
+}
+
+.todoListTitle{
+  margin: 30px;
+  color: var(--yellow);
+  font-size: 40px;
+  font-weight: 900;
+}
+
+.titleTitle{
+
+}
+
+.inputTitle{ 
+  background-color: var(--yellow); 
+}
+
+.contentTitle{
+  
+}
+
+.content{
+  background-color: var(--yellow);
+  
+}
+
+.sortSymbol:hover {
+  cursor: pointer;
+}
+
+.sortSymbol:active {
+  cursor: pointer;
+  background-color: red;
+}
+
+.todo {
+  border: dashed 1px var(--yellow);
+  margin: 10px;
+  padding: 5px;
+  background-color: var(--purpleLight)
+}
+
+.addBtn{
+  margin:10px;
+}
+
+.edit, .delete{
+  margin: 5px;
+}
