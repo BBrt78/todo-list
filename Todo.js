@@ -5,9 +5,7 @@ import {TodoList} from "./Todolist.js";
 export function Todo(props) {
     const [edit, setEdit] = useState("Edit");
     const [delete1, setDelete1] = useState(false);
-    const [titleEditValue, setTitleEditValue] = useState(props.title);
-    const [contentEditValue, setContentEditValue] = useState(props.content)
-
+   
     const editF = () => {
         if (edit === "Edit") {
             setEdit("Save")
@@ -15,12 +13,7 @@ export function Todo(props) {
             setEdit("Edit")}
     };
 
-    const changeTitle = (e) => {
-        setTitleEditValue(e.target.value)
-    };
-    const changeContent = (e) => {
-        setContentEditValue(e.target.value)
-    };
+   
     const delete1F = () => {
        delete1 === false ? setDelete1(true) : setDelete1(false);
     };
@@ -32,21 +25,21 @@ export function Todo(props) {
                 <div className="todo">
                     {edit === "Edit" ?
                         <>
-                        <div className="title" id="titleId">Title: {titleEditValue}</div><br />
-                        <div className="content2">Content: {contentEditValue}</div><br />
+                        <div className="title" id="titleId">Title: {props.title}</div><br />
+                        <div className="content2">Content: {props.content}</div><br />
                         <div>Added {props.date}</div>
                         </>
                     :
                         <>
                         <span className="titleEdit">Title: </span>
-                        <input type="text" id="title" value={titleEditValue} onChange={changeTitle}></input>
+                        <input type="text" id="title" value={props.title} ></input>
                         
                         <span>Content: </span>
                         <textarea 
                             className="contentEdit" 
                             id="content"
-                            onChange={changeContent} 
-                            value={contentEditValue}>
+                             
+                            value={props.content}>
                         </textarea>
                         </>
                     }
