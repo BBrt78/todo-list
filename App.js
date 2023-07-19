@@ -9,14 +9,16 @@ function App() {
    const [sortSymbol, setSortSymbol] = useState("▽");
    let sortedList = [];
    const [todoList, setTodoList] = useState(TodoList);
-   
+   const [editClick, setEditClick] = useState(false);
+   const [deleteClick, setDeleteClick] = useState(false);
    const newTitle = (e) => {
 		setTitle(e.target.value);
-   }
+   };
    const newContent = (e) => {
 		setContent(e.target.value);
-   }
+   };
    const addTodo = () => {
+	if (title, content) {
 		const newTodo = {
 			title: title,
 			content: content,
@@ -26,7 +28,7 @@ function App() {
 		setTitle("");
 		setContent("");
 		console.log(todoList)
-	};
+	}};
 
 	const sortChange = () => {
 		if(sortSymbol === "▽") {
@@ -39,8 +41,20 @@ function App() {
 			setSortSymbol("▽")
 		}
 		console.log(TodoList)
-	}
+	};
 
+	const editTodo = () => {
+		if(editClick === false) {
+			setEditClick(true)
+		} else {
+			setEditClick(false)
+		}
+    }
+	
+    const deleteTodo = (todo) => {
+		setTodoList(todoList.filter((todo, index) => index !== todo.key))
+	}
+	
     return (
         <div className="container">
 				<span className="todoListTitle">To Do List</span>
@@ -64,6 +78,10 @@ function App() {
 									title={todo.title}
 									content={todo.content}
 									date={todo.date}
+									edit={editTodo}
+									delete={deleteTodo}
+									editClick={editClick}
+									deleteClick={deleteClick}
 								/>
 						))}
 					</div>
