@@ -2,6 +2,7 @@ import './App.css';
 import {useState, useRef, useEffect, useReducer, createContext, useContext} from 'react';
 import {TodoList} from "./Todolist.js";
 import {Todo} from "./Todo.js";
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
    const [title, setTitle] = useState("");
@@ -11,6 +12,7 @@ function App() {
    const [todoList, setTodoList] = useState(TodoList);
    const [editClick, setEditClick] = useState(false);
    const [deleteClick, setDeleteClick] = useState(false);
+   let id = ""
    const newTitle = (e) => {
 		setTitle(e.target.value);
    };
@@ -18,16 +20,18 @@ function App() {
 		setContent(e.target.value);
    };
    const addTodo = () => {
-	if (title, content) {
+	if (title && content) {
+		id = uuidv4();
 		const newTodo = {
 			title: title,
 			content: content,
-			date: new Date(Date.now()).toLocaleString()
+			date: new Date(Date.now()).toLocaleString(),
+			id: id
 		}
 		todoList.push(newTodo);
 		setTitle("");
 		setContent("");
-		console.log(todoList)
+	
 	}};
 
 	const sortChange = () => {
@@ -40,7 +44,6 @@ function App() {
 			setTodoList(sortedList)
 			setSortSymbol("▽")
 		}
-		console.log(TodoList)
 	};
 
 	const editTodo = () => {
@@ -51,10 +54,12 @@ function App() {
 		}
     }
 	
-    const deleteTodo = (todo) => {
-		setTodoList(todoList.filter((todo, index) => index !== todo.key))
+    const deleteTodo = () => {
+		setDeleteClick(true)
+		setTodoList(todoList.filter((todo, index) => id !== todo.id));
+		console.log(todoList)
 	}
-	
+
     return (
         <div className="container">
 				<span className="todoListTitle">To Do List</span>
@@ -75,6 +80,8 @@ function App() {
 						{todoList.map((todo, key) => (
 								<Todo 
 									key={key}
+									mkey={key}
+									id={todo.id}
 									title={todo.title}
 									content={todo.content}
 									date={todo.date}
