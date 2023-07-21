@@ -12,7 +12,8 @@ function App() {
    const [todoList, setTodoList] = useState(TodoList);
    const [editClick, setEditClick] = useState(false);
    const [deleteClick, setDeleteClick] = useState(false);
-   let id = ""
+   let id = "";
+   const [id2, setId2] = useState("")
    const newTitle = (e) => {
 		setTitle(e.target.value);
    };
@@ -22,6 +23,7 @@ function App() {
    const addTodo = () => {
 	if (title && content) {
 		id = uuidv4();
+		setId2(id);
 		const newTodo = {
 			title: title,
 			content: content,
@@ -31,9 +33,8 @@ function App() {
 		todoList.push(newTodo);
 		setTitle("");
 		setContent("");
-	
 	}};
-
+	
 	const sortChange = () => {
 		if(sortSymbol === "▽") {
 			sortedList = todoList.sort((a, b) => (a.date < b.date) ? 1 : -1);
@@ -52,13 +53,13 @@ function App() {
 		} else {
 			setEditClick(false)
 		}
-    }
+    };
 	
     const deleteTodo = () => {
 		setDeleteClick(true)
-		setTodoList(todoList.filter((todo, index) => id !== todo.id));
-		console.log(todoList)
-	}
+		setTodoList(todoList.filter((todo, id2) => id2 !== todo.id));
+		
+	};
 
     return (
         <div className="container">
