@@ -13,14 +13,12 @@ export function Todo(props) {
             setEdit("Edit")}
     };
 
-   
-    const delete1F = () => {
-       delete1 === false ? setDelete1(true) : setDelete1(false);
-    };
-
+    // const deleteTodo = () => {
+    //    delete1 === false ? setDelete1(true) : setDelete1(false);
+    // };
+    
     return (<>
-        
-            {delete1 === false ?
+            {props.deleteClick === false ?
                 <>
                 <div className="todo">
                     {edit === "Edit" ?
@@ -44,7 +42,7 @@ export function Todo(props) {
                         </>
                     }
                     <button className="edit" onClick={editF}>{edit}</button>
-                    <button className="delete" onClick={delete1F}>Delete</button>
+                    <button className="delete" onClick={props.delete}>Delete</button>
                 </div>
                 </>
             :
