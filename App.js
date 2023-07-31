@@ -13,17 +13,19 @@ function App() {
    const [editClick, setEditClick] = useState(false);
    const [deleteClick, setDeleteClick] = useState(false);
    let id = "";
-   const [id2, setId2] = useState("")
+   //const [id2, setId2] = useState("");
+
    const newTitle = (e) => {
 		setTitle(e.target.value);
    };
    const newContent = (e) => {
 		setContent(e.target.value);
    };
+
    const addTodo = () => {
 	if (title && content) {
 		id = uuidv4();
-		setId2(id);
+		//setId2(id);
 		const newTodo = {
 			title: title,
 			content: content,
@@ -45,6 +47,7 @@ function App() {
 			setTodoList(sortedList)
 			setSortSymbol("▽")
 		}
+		
 	};
 
 	const editTodo = () => {
@@ -57,9 +60,10 @@ function App() {
 	
     const deleteTodo = () => {
 		setDeleteClick(true)
-		setTodoList(todoList.filter((todo, id2) => id2 !== todo.id));
-		
+		setTodoList(todoList.filter((todo, id) => id !== todo.id));
 	};
+
+	useEffect(() => {console.log(todoList)}, [addTodo])
 
     return (
         <div className="container">
