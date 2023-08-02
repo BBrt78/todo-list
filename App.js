@@ -12,9 +12,7 @@ function App() {
    const [todoList, setTodoList] = useState(TodoList);
    const [editClick, setEditClick] = useState(false);
    const [deleteClick, setDeleteClick] = useState(false);
-   let id = "";
-   //const [id2, setId2] = useState("");
-
+   //let id = {};
    const newTitle = (e) => {
 		setTitle(e.target.value);
    };
@@ -23,9 +21,9 @@ function App() {
    };
 
    const addTodo = () => {
+	
 	if (title && content) {
-		id = uuidv4();
-		//setId2(id);
+		const id = uuidv4();
 		const newTodo = {
 			title: title,
 			content: content,
@@ -58,12 +56,14 @@ function App() {
 		}
     };
 	
-    const deleteTodo = () => {
-		setDeleteClick(true)
-		setTodoList(todoList.filter((todo, id) => id !== todo.id));
+    const deleteTodo = (id) => {
+		//setDeleteClick(true);
+		setTodoList([])
+		//setTodoList(todoList.filter((todo) => todo.id !== id));
+		console.log("addTodo", typeof id)
+		console.log("todoList:", todoList)
 	};
-
-	useEffect(() => {console.log(todoList)}, [addTodo])
+	
 
     return (
         <div className="container">
