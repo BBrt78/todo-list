@@ -12,7 +12,7 @@ function App() {
    const [todoList, setTodoList] = useState(TodoList);
    const [editClick, setEditClick] = useState(false);
    const [deleteClick, setDeleteClick] = useState(false);
-   //let id = {};
+
    const newTitle = (e) => {
 		setTitle(e.target.value);
    };
@@ -29,9 +29,10 @@ function App() {
 			date: new Date(Date.now()).toLocaleString(),
 			id: id
 		}
-		todoList.push(newTodo);
+		setTodoList([...todoList, newTodo]);
 		setTitle("");
 		setContent("");
+		
 	}};
 	
 	const sortChange = () => {
@@ -54,12 +55,9 @@ function App() {
     };
 	
     const deleteTodo = (id) => {
-		//setDeleteClick(true);
-		//setTodoList([])
-		setTodoList(todoList.filter((todo) => todo.id === id));
+		setTodoList(todoList.filter((todo) => todo.id !== id));
 	};
 		
-	console.log(todoList)
     return (
         <div className="container">
 				<span className="todoListTitle">To Do List</span>
@@ -86,8 +84,7 @@ function App() {
 									content={todo.content}
 									date={todo.date}
 									edit={editTodo}
-									delete={deleteTodo}
-									editClick={editClick}
+									deleteTodo={deleteTodo}
 									deleteClick={deleteClick}
 								/>
 						))}
