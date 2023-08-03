@@ -21,7 +21,6 @@ function App() {
    };
 
    const addTodo = () => {
-	
 	if (title && content) {
 		const id = uuidv4();
 		const newTodo = {
@@ -44,9 +43,7 @@ function App() {
 			sortedList = todoList.sort((a, b) => (a.date > b.date) ? 1 : -1);
 			setTodoList(sortedList)
 			setSortSymbol("▽")
-		}
-		
-	};
+		}};
 
 	const editTodo = () => {
 		if(editClick === false) {
@@ -58,13 +55,11 @@ function App() {
 	
     const deleteTodo = (id) => {
 		//setDeleteClick(true);
-		setTodoList([])
-		//setTodoList(todoList.filter((todo) => todo.id !== id));
-		console.log("addTodo", typeof id)
-		console.log("todoList:", todoList)
+		//setTodoList([])
+		setTodoList(todoList.filter((todo) => todo.id === id));
 	};
-	
-
+		
+	console.log(todoList)
     return (
         <div className="container">
 				<span className="todoListTitle">To Do List</span>
