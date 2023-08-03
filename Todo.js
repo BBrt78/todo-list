@@ -5,9 +5,13 @@ export function Todo(props) {
     const [edit, setEdit] = useState("Edit");
     const [editTitle, setEditTitle] = useState(props.title);
     const [editContent, setEditContent] = useState(props.content);
+
+    useEffect(() => {
+        setEditTitle(props.title);
+        setEditContent(props.content);
+    }, [props.title, props.content]);
    
     const editF = () => {
-        console.log(props.title)
         if (edit === "Edit") {
 
             setEdit("Save")
@@ -41,7 +45,7 @@ export function Todo(props) {
                         </>
                     }
                     <button className="edit" onClick={editF}>{edit}</button>
-                    <button className="delete" onClick={props.delete}>Delete</button>
+                    <button className="delete" onClick={() => props.deleteTodo(props.id)}>Delete</button>
                </div>
     )
 }
